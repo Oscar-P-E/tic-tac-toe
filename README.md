@@ -1,2 +1,3 @@
 # tic-tac-toe
-The Odin Project JS Project
+
+We’re making a Tic Tac Toe game you can play in your browser!
