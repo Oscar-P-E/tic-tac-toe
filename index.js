@@ -4,7 +4,7 @@ const main = document.getElementById('main');
 
 const createTable = () => {
     const table = document.createElement('table');
-    table.classList.add('game-table');
+    table.classList.add('game-table');
 
     Gameboard.makeNewBoard(3, 3);
 

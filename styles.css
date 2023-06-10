@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,5 +13,22 @@ body {
 }
 
 .game-table {
-    ;
+    width: 80vh;
+    height: 80vh;
+    border-collapse: collapse;
+}
+
+.game-row:not(:first-child):not(:last-child) .game-cell {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.game-cell:not(:first-child):not(:last-child) {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+} 
+
+.game-cell {
+    font-size: 10rem;
+    /* font-family: monospace; */
 }
