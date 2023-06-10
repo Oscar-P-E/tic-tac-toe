@@ -5,23 +5,72 @@ const Gameboard = (() => {
         for (let i = 0; i < rows; i++) {
             board[i] = [];
             for (let j = 0; j < cols; j++) {
-                board[i][j] = '☕︎';
-            };
-        };
+                board[i][j] = '';
+            }
+        }
     };
 
     const modifyBoard = (row, col, val) => {
-        board[row][col] = val;
-    };
+        if (board[row][col] === '') {
+            board[row][col] = val;
+        }
+    }
 
     const getBoard = () => {
         return board;
     }
 
+    const checkForWinner = (player1, player2) => {
+    const board = Gameboard.getBoard();
+    const size = board.length;
+
+    // Helper function to check if all values in an array are equal and not empty
+    const allEqual = arr => arr.every(val => val && val === arr[0]);
+
+    // check rows
+    for (let i = 0; i < size; i++) {
+        if (allEqual(board[i])) {
+            return board[i][0] === player1.sign ? player1 : player2;
+        }
+    }
+
+    // check columns
+    for (let i = 0; i < size; i++) {
+        let col = board.map(row => row[i]);
+        if (allEqual(col)) {
+            return col[0] === player1.sign ? player1 : player2;
+        }
+    }
+
+    // check main diagonal (top left to bottom right)
+    let mainDiag = board.map((row, idx) => row[idx]);
+    if (allEqual(mainDiag)) {
+        return mainDiag[0] === player1.sign ? player1 : player2;
+    }
+
+    // check secondary diagonal (top right to bottom left)
+    let secondaryDiag = board.map((row, idx) => row[size - idx - 1]);
+    if (allEqual(secondaryDiag)) {
+        return secondaryDiag[0] === player1.sign ? player1 : player2;
+    }
+
+    // no winner yet
+    // if all cells are filled, it's a draw
+    let isDraw = board.every(row => row.every(cell => cell !== ''));
+
+    if (isDraw) {
+        return 'draw';
+    }
+
+    // game is still ongoing
+    return null;
+};
+
     return {
         makeNewBoard,
         modifyBoard,
         getBoard,
+        checkForWinner,
     };
 })();
 
