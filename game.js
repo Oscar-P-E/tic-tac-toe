@@ -12,10 +12,11 @@ const Gameboard = (() => {
 
     const modifyBoard = (row, col, val) => {
         if (board[row][col] !== "") {
-            return "unchanged";
+            return false;
+        } else {
+            board[row][col] = val;
+            return true;
         }
-        board[row][col] = val;
-        return "changed";
     };
 
     const getBoard = () => {
@@ -53,8 +54,8 @@ const GameController = (() => {
         for (let i = 0; i < size; i++) {
             if (allEqual(board[i])) {
                 return board[i][0] === player1.sign
-                    ? player1.name
-                    : player2.name;
+                    ? player1.name + " wins!"
+                    : player2.name + " wins!";
             }
         }
 
@@ -62,22 +63,26 @@ const GameController = (() => {
         for (let i = 0; i < size; i++) {
             let col = board.map((row) => row[i]);
             if (allEqual(col)) {
-                return col[0] === player1.sign ? player1.name : player2.name;
+                return col[0] === player1.sign
+                    ? player1.name + " wins!"
+                    : player2.name + " wins!";
             }
         }
 
         // check main diagonal (top left to bottom right)
         let mainDiag = board.map((row, idx) => row[idx]);
         if (allEqual(mainDiag)) {
-            return mainDiag[0] === player1.sign ? player1.name : player2.name;
+            return mainDiag[0] === player1.sign
+                ? player1.name + " wins!"
+                : player2.name + " wins!";
         }
 
         // check secondary diagonal (top right to bottom left)
         let secondaryDiag = board.map((row, idx) => row[size - idx - 1]);
         if (allEqual(secondaryDiag)) {
             return secondaryDiag[0] === player1.sign
-                ? player1.name
-                : player2.name;
+                ? player1.name + " wins!"
+                : player2.name + " wins!";
         }
 
         // no winner yet
@@ -85,7 +90,7 @@ const GameController = (() => {
         let isDraw = board.every((row) => row.every((cell) => cell !== ""));
 
         if (isDraw) {
-            return "draw";
+            return "It's a draw!";
         }
 
         // game is still ongoing
@@ -102,18 +107,15 @@ const GameController = (() => {
     };
 
     const makeMove = (row, col) => {
-        if (
-            Gameboard.modifyBoard(row, col, currentPlayer.sign) === "unchanged"
-        ) {
-            return;
-        }
-        console.log(checkForWinner());
-        switchPlayer();
+        Gameboard.modifyBoard(row, col, currentPlayer.sign) && switchPlayer();
     };
 
     return {
         makeMove,
         renamePlayer,
+        checkForWinner,
+        player1,
+        player2,
     };
 })();
 

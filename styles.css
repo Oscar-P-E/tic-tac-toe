@@ -1,29 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     flex-direction: column;
+    background: #EEB5EB; /* light pink to match button text */
+    color: #6A057F; /* purple to match button background */
 }
 
 #main {
     text-align: center;
+    margin: 0;
 }
 
 .game-table {
     display: grid;
+    margin: auto;
     gap: 5px; /* "border" */
-    width: 80vh;
-    height: 80vh;
-    background: black; /* "border" color */
+    width: 70vh;
+    height: 70vh;
+    background: #9C039E; /* magenta to match button hover */
 }
 
 .game-cell {
     display: grid;
-    font-size: 10rem;
-    background: white; /* cell color */
+    font-size: 7rem;
+    background: #D3F8E2; /* mint green to match button hover text */
     overflow: hidden;
     place-items: center;
+    color: #6A057F; /* purple to match button background */
+}
+
+.name_area,
+.btns_area {
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 2rem;
+    color: #6A057F; /* purple to match button background */
+}
+
+.rename_p1_btn,
+.rename_p2_btn,
+.start_restart_btn {
+    width: 150px;
+    height: 30px;
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.start_restart_btn {
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: auto;
+    background: #6A057F; /* purple */
+    color: #EEB5EB; /* light pink */
+}
+
+.start_restart_btn:hover {
+    background: #9C039E; /* magenta for hover */
+    color: #D3F8E2; /* mint green for contrast on hover */
+}
+
+
+.rename_p1_btn:hover,
+.rename_p2_btn:hover {
+    color: black;
+    background: #D3F8E2;
+}
+
+button {
+    border-radius: 3px;
+}
+
+.p1_name,
+.p2_name {
+    line-height: 135%;
 }
