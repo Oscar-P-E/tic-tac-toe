@@ -31,7 +31,7 @@ const drawDivsTable = () => {
         }
     }
 
-    main.appendChild(gameTable);
+    main.prepend(gameTable);
 };
 
 const drawDisplay = () => {
@@ -70,11 +70,14 @@ const drawButtons = () => {
     btns_area.appendChild(renameP2Btn);
 
     startRestartBtn.addEventListener("click", () => {
-        if (startRestartBtn.innerText === "Restart Game") {
-            const gameTable = document.querySelector(".game-table");
-            
+        const gameTable = document.querySelector(".game-table");
+        if (gameTable) {
+            gameTable.remove();
+            drawDivsTable();
+        } else {
+            startRestartBtn.innerText = "Reset Game";
+            drawDivsTable();
         }
-        drawDivsTable();
     });
 
     // becomes restart button while game is in progress

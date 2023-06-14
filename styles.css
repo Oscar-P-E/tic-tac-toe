@@ -21,9 +21,10 @@ body {
     display: grid;
     margin: auto;
     gap: 5px; /* "border" */
-    width: 70vh;
-    height: 70vh;
+    width: 66vh;
+    height: 66vh;
     background: #9C039E; /* magenta to match button hover */
+    margin-bottom: 30px;
 }
 
 .game-cell {
