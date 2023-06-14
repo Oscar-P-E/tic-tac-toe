@@ -86,9 +86,16 @@ const drawButtons = () => {
 };
 
 const endGameDisplay = (outcome) => {
-    // replace the game board with a big message
+    const gameCells = document.querySelectorAll(".game-cell");
+    for (let cell of gameCells) {
+        cell.style.fontSize = "1rem";
+        const span = document.createElement("span");
+        span.classList.add("blink");
+        span.textContent = outcome;
+        cell.innerHTML = "";
+        cell.appendChild(span);
+    }
 };
 
-// drawDivsTable();
 drawDisplay();
 drawButtons();
