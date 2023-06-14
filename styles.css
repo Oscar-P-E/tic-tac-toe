@@ -44,6 +44,13 @@ body {
     overflow: hidden;
     place-items: center;
     color: #6A057F; /* purple to match button background */
+    transition: background-color 0.2s ease;
+
+}
+
+.game-cell:hover {
+    background: #EEB5EB; /* lighter purple */
+    border: 2px solid #9C039E;
 }
 
 .name_area,
