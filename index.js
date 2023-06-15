@@ -2,7 +2,7 @@ import { Gameboard, GameController } from "./game.js";
 
 const main = document.getElementById("main");
 
-// a "table" made of divs because it's easier to manage
+// a "table" made of divs because it's easier to manage than a table
 const drawDivsTable = () => {
     const gameTable = document.createElement("div");
     gameTable.classList.add("game-table");
@@ -35,7 +35,6 @@ const drawDivsTable = () => {
 };
 
 const drawDisplay = () => {
-    // make two name displays in webpage
     const nameArea = document.createElement("div");
     const p1Display = document.createElement("div");
     const p2Display = document.createElement("div");
@@ -64,6 +63,24 @@ const drawButtons = () => {
     renameP2Btn.textContent = "Change P2 name";
     startRestartBtn.textContent = "Start Game";
 
+    renameP1Btn.addEventListener("click", () => {
+        const p1Display = document.querySelector(".p1_name");
+        const input = prompt("Enter Player 1 name:");
+        if (input !== "") {
+            GameController.renamePlayer(GameController.player1, input);
+            p1Display.textContent = `${GameController.player1.name} = ${GameController.player1.sign}`;
+        }
+    });
+
+    renameP2Btn.addEventListener("click", () => {
+        const p2Display = document.querySelector(".p2_name");
+        const input = prompt("Enter Player 2 name:");
+        if (input !== "") {
+            GameController.renamePlayer(GameController.player2, input);
+            p2Display.textContent = `${GameController.player2.name} = ${GameController.player2.sign}`;
+        }
+    });
+
     main.appendChild(btns_area);
     btns_area.appendChild(renameP1Btn);
     btns_area.appendChild(startRestartBtn);
@@ -79,10 +96,6 @@ const drawButtons = () => {
             drawDivsTable();
         }
     });
-
-    // becomes restart button while game is in progress
-    // restart button clears everything (board or msg) and redraws
-    // rename buttons disappear when game is on
 };
 
 const endGameDisplay = (outcome) => {
